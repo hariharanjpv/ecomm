@@ -41,8 +41,14 @@ public class MainController {
 
     @PostMapping("/addProduct")
     public ResponseEntity<?> addProduct(@RequestBody Product product){
-        productService.addProduct(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        if(productService.addProduct(product)) {
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }
+        else {
+            return new ResponseEntity<>("Product already exists, use update.",HttpStatus.CONFLICT);
+        }
     }
+
+
 
 }
