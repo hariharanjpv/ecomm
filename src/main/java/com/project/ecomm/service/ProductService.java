@@ -23,6 +23,10 @@ public class ProductService {
         return repo.findAll();
     }
 
+    public Product getProduct(Integer Id){
+        return repo.findById(Id).orElse(null);
+    }
+
     public void addProduct(Product product) {
         repo.save(product);
     }

@@ -31,6 +31,14 @@ public class MainController {
         return new ResponseEntity<>(allProducts, HttpStatus.OK);
     }
 
+    @GetMapping("/getProduct/{Id}")
+    public ResponseEntity<Product> getProduct(@PathVariable Integer Id){
+        Product product = productService.getProduct(Id);
+        if(product==null)
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(product, HttpStatus.OK);
+    }
+
     @PostMapping("/addProduct")
     public ResponseEntity<?> addProduct(@RequestBody Product product){
         productService.addProduct(product);
