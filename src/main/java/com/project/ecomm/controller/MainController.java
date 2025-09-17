@@ -16,8 +16,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class MainController {
 
-
-    ProductService productService;
+    private ProductService productService;
 
     @Autowired
     MainController(ProductService productService){
@@ -27,8 +26,7 @@ public class MainController {
 
     @GetMapping("/getAllProducts")
     public ResponseEntity<List<Product>> getAllProducts(){
-        List<Product> allProducts = productService.getAllProducts();
-        return new ResponseEntity<>(allProducts, HttpStatus.OK);
+        return new ResponseEntity<>(productService.getAllProducts(), HttpStatus.OK);
     }
 
     @GetMapping("/getProduct/{Id}")
