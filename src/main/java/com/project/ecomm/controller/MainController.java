@@ -53,4 +53,10 @@ public class MainController {
         return new ResponseEntity<>("Product does not exist, add Product.",HttpStatus.NOT_FOUND);
     }
 
+    @DeleteMapping("/deleteProduct/{Id}")
+    public ResponseEntity<HttpStatus> deleteProduct(@PathVariable Integer Id){
+        if(productService.deleteProduct(Id))
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
 }

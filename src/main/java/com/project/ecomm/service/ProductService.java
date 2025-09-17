@@ -43,4 +43,12 @@ public class ProductService {
         repo.save(product);
         return true;
     }
+
+    public boolean deleteProduct(Integer id) {
+        Product fetchedProduct = repo.findById(id).orElse(null);
+        if(fetchedProduct == null)
+            return false;
+        repo.deleteById(id);
+        return true;
+    }
 }
