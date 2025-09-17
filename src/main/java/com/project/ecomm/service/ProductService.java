@@ -34,4 +34,13 @@ public class ProductService {
         repo.save(product);
         return true;
     }
+
+    public boolean updateProduct(Product product){
+        Product fetchedProduct = repo.findById(product.getProductId()).orElse(null);
+
+        if(fetchedProduct == null)
+            return false;
+        repo.save(product);
+        return true;
+    }
 }

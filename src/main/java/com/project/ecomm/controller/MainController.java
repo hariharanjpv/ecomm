@@ -41,14 +41,16 @@ public class MainController {
 
     @PostMapping("/addProduct")
     public ResponseEntity<?> addProduct(@RequestBody Product product){
-        if(productService.addProduct(product)) {
+        if(productService.addProduct(product))
             return new ResponseEntity<>(HttpStatus.CREATED);
-        }
-        else {
-            return new ResponseEntity<>("Product already exists, use update.",HttpStatus.CONFLICT);
-        }
+        return new ResponseEntity<>("Product already exists, use update.",HttpStatus.CONFLICT);
     }
 
-
+    @PutMapping("/updateProduct")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product){
+        if(productService.updateProduct(product))
+            return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("Product does not exist, add Product.",HttpStatus.NOT_FOUND);
+    }
 
 }
