@@ -35,11 +35,13 @@ public class ProductService {
         return true;
     }
 
-    public boolean updateProduct(Product product){
-        Product fetchedProduct = repo.findById(product.getProductId()).orElse(null);
+    public boolean updateProduct(Product product, Integer Id){
+        Product fetchedProduct = repo.findById(Id).orElse(null);
 
         if(fetchedProduct == null)
             return false;
+
+        product.setProductId(Id);
         repo.save(product);
         return true;
     }

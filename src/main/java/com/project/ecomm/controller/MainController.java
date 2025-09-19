@@ -13,6 +13,7 @@ import java.util.List;
 
 @Component
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class MainController {
 
@@ -44,9 +45,9 @@ public class MainController {
         return new ResponseEntity<>("Product already exists, use update.",HttpStatus.CONFLICT);
     }
 
-    @PutMapping("/updateProduct")
-    public ResponseEntity<?> updateProduct(@RequestBody Product product){
-        if(productService.updateProduct(product))
+    @PutMapping("/updateProduct/{Id}")
+    public ResponseEntity<?> updateProduct(@RequestBody Product product, @PathVariable Integer Id){
+        if(productService.updateProduct(product, Id))
             return new ResponseEntity<>(HttpStatus.OK);
         return new ResponseEntity<>("Product does not exist, add Product.",HttpStatus.NOT_FOUND);
     }
